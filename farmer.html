@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Farmer Dashboard | AgroLogix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="farmer.css">  
+
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+  
+   <div class="logo-wrapper">
+     <div class="logo">🌾 AgroLogix</div>
+
+<div class="nav-center">
+    <button class="active" onclick="showSection('myproducts',this)">My Products</button>
+    <button onclick="showSection('b_vehicles',this)">Book Vehicles</button>
+    <button onclick="showSection('r_equipment',this)">Rent Equipment</button>
+    <button onclick="showSection('r_storage',this)">Rent Storage</button>
+  </div>
+
+  <div class="nav-right">
+   
+    <div class="profile-wrapper">
+  <div class="profile" onclick="toggleProfileMenu()">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+      alt="Farmer Profile"
+    >
+    <span>Farmer Profile</span>
+  </div>
+
+  <div class="profile-menu" id="profileMenu">
+    <div class="menu-item">👤 Profile</div>
+    <div class="menu-item">📊 Activity</div>
+    <div class="menu-item">❓ Help</div>
+    <div class="menu-item">🔒 Privacy Centre</div>
+    <div class="menu-item logout">🚪 Logout</div>
+  </div>
+</div>
+
+  </div>
+</header>
+
+
+
+<!-- MyProducts -->
+<section class="section active " id="myproducts">
+  <div class="page-header">
+    <h2>My Products</h2>
+    <div class="actions">
+      <input placeholder="Search Products" onkeyup="searchCards(this,'myproducts')">
+      <button class="btn primary" onclick="openModal('myproducts')">+ Add Item</button>
+    </div>
+  </div>
+  <div class="grid" id="productsGrid"></div>
+</section>
+
+<!-- Vehicle Booking -->
+<section class="section" id="b_vehicles">
+  <div class="page-header">
+    <h2> Book Transport Vehicles</h2>
+    <div class="actions">
+      <input placeholder="Search Vehicle" onkeyup="searchCards(this,'b_vehicles')">
+    </div>
+  </div>
+  <div class="grid" id="vehiclesGrid">
+
+  </div>
+</section>
+
+<!-- Rent Equipment -->
+<section class="section" id="r_equipment">
+  <div class="page-header">
+    <h2>Rent Farming Equipment</h2>
+    <div class="actions">
+      <input placeholder="Search Equipments" onkeyup="searchCards(this,'r_equipment')">
+    </div>
+  </div>
+  <div class="grid" id="equipmentGrid"></div>
+</section>
+
+ 
+
+<!-- Rent Storage -->
+<section class="section" id="r_storage">
+  <div class="page-header">
+    <h2>Rent Storage Facilities</h2>
+    <div class="actions">
+      <input placeholder="Search Storage" onkeyup="searchCards(this,'r_storage')">
+    </div>
+  </div>
+  <div class="grid" id="storageGrid"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle"></h3>
+    <div id="modalFields"></div>
+    <div class="modal-actions">
+      <button class="btn primary" onclick="saveItem()">Save</button>
+      <button class="btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+
+<script src="farmer.js">
+</script>
+
+</body>
+</html>
