@@ -1,0 +1,143 @@
+/* Modal */
+.login-modal {
+  background: linear-gradient(145deg, #f6f9e6, #ffffff);
+  border-radius: 22px;
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  border: 2px solid #8FA31E;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Close */
+.login-modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #556B2F;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+/* Header */
+.login-modal-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+.login-modal-header h2 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+.login-modal-header p {
+  color: #6b7a3e;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Role Section */
+.section-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+.role-selector {
+  display: flex;
+  background: #e8efc1;
+  border-radius: 14px;
+  padding: 6px;
+  gap: 6px;
+}
+.role-pill {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #556B2F;
+}
+.role-pill i {
+  margin-right: 6px;
+}
+.role-pill.active {
+  background: #8FA31E;
+  color: white;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Inputs */
+.login-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #c6d870;
+  padding: 14px;
+  border-radius: 14px;
+  background: white;
+}
+.login-input-wrapper input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 15px;
+}
+.toggle-eye {
+  cursor: pointer;
+  color: #556B2F;
+}
+
+/* Forgot */
+.forgot-row {
+  text-align: right;
+}
+.forgot-row a {
+  font-size: 14px;
+  color: #556B2F;
+  text-decoration: none;
+  font-weight: 600;
+}
+.forgot-row a:hover {
+  text-decoration: underline;
+}
+
+/* Submit */
+.login-submit-btn {
+  background: linear-gradient(135deg, #8FA31E, #556B2F);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.login-submit-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Footer */
+.login-signup-link {
+  text-align: center;
+  font-size: 14px;
+}
+.login-signup-link a {
+  color: #556B2F;
+  font-weight: 600;
+}
+body {
+  overflow-x: hidden; /* hides horizontal scrollbar */
+}
+

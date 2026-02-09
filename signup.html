@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+  <div class="signup-container">
+<a href="homepage.html" class="back-button">
+  <img src="../assets/back_button_37286.png" alt="Back to Home">
+</a>
+
+    <div class="signup-form">
+      <h1 class="title">Sign Up</h1>
+      <p class="subtitle">Create your account to get started</p>
+
+      <label class="section-label">Select Role*</label>
+
+      <div class="roles">
+        <input type="radio" name="role" id="farmer" checked>
+        <label for="farmer" class="role"><i class="fa-solid fa-tractor"></i> Farmer</label>
+
+        <input type="radio" name="role" id="provider">
+        <label for="provider" class="role"><i class="fa-solid fa-briefcase"></i> Provider</label>
+
+        <input type="radio" name="role" id="customer">
+        <label for="customer" class="role"><i class="fa-solid fa-user"></i> Customer</label>
+      </div>
+
+      <form>
+
+        <!-- NAME ROW -->
+        <div class="row">
+          <div class="form-group icon-input half">
+            <label>First Name*</label>
+            <i class="fa-solid fa-user left-icon"></i>
+            <input type="text" placeholder="Enter first name" required
+                   pattern="[A-Za-z]{1,20}" title="Only letters, max 20 characters">
+
+          </div>
+
+          <div class="form-group icon-input half">
+            <label>Last Name*</label>
+            <i class="fa-solid fa-user left-icon"></i>
+            <input type="text" placeholder="Enter last name" required
+                  pattern="[A-Za-z]{1,20}" title="Only letters, max 20 characters">
+
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group icon-input">
+          <label>Email Address*</label>
+          <i class="fa-solid fa-envelope left-icon"></i>
+          <input type="email" placeholder="Enter email address" required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in)$"
+                  title="Enter valid email like example@domain.com or example@domain.in">
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group icon-input">
+          <label>Password*</label>
+          <i class="fa-solid fa-lock left-icon"></i>
+          <input type="password" placeholder="Enter password" required
+                 pattern="(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                 title="Min 8 chars, 1 uppercase, 1 number, 1 special char">
+
+          <small>Min 8 characters, 1 uppercase, 1 number, 1 special character</small>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="form-group icon-input">
+          <label>Confirm Password*</label>
+          <i class="fa-solid fa-lock left-icon"></i>
+          <input type="password" placeholder="Re-enter password" required>
+        </div>
+
+        <div class="terms">
+          <input type="checkbox" required>
+          <span>I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></span>
+        </div>
+
+        <button class="signup-btn">Sign Up</button>
+
+      <p class="login-text">
+          Already have an account? <a href="homepage.html#login">Login here</a>
+
+   
+
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.querySelector('form').addEventListener('submit', function(e){
+    e.preventDefault(); // prevent default form submission
+    Swal.fire({
+      icon: 'success',
+      title: 'Signup Successful',
+      text: 'Your account has been created!'
+    });
+});
+</script>
+
+</body>
+</html>

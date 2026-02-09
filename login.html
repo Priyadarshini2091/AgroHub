@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Login.css" />
+  <!-- Toastify -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="login-modal">
+    <!-- Close Button -->
+    <button class="login-modal-close-btn" onclick="closePopup()">✕</button>
+    <div class="login-modal-header">
+      <h2>Welcome Back</h2>
+      <p>Please login to explore more</p>
+    </div>
+
+    <form class="login-form" onsubmit="handleLogin(event)">
+      <!-- ROLE SELECTOR -->
+      <div class="role-section">
+        <label class="section-label">Login as</label>
+        <div class="role-selector">
+          <button type="button" class="role-pill active" onclick="selectRole('customer', this)">
+            <i class="fa-solid fa-user"></i> Customer
+          </button>
+          <button type="button" class="role-pill" onclick="selectRole('farmer', this)">
+            <i class="fa-solid fa-seedling"></i> Farmer
+          </button>
+          <button type="button" class="role-pill" onclick="selectRole('provider', this)">
+            <i class="fa-solid fa-store"></i> Provider
+          </button>
+        </div>
+      </div>
+
+      <!-- EMAIL / PHONE -->
+      <div>
+        <label>Email or Phone</label>
+        <div class="login-input-wrapper">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="text" id="loginId" placeholder="Enter email or phone number" required />
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div>
+        <label>Password</label>
+        <div class="login-input-wrapper">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="password" placeholder="Enter password" required />
+          <span class="toggle-eye" onclick="togglePassword()">
+            <i class="fa-solid fa-eye"></i>
+          </span>
+        </div>
+      </div>
+
+         <div class="forgot-row">
+           <a href="#forgotPopup" >Forgot password?</a>
+         </div>
+
+
+      <button class="login-submit-btn" type="submit">Login</button>
+
+      <div class="login-signup-link">
+        Don’t have an account?
+        <a href="../signup.html" target="_parent">Sign Up</a>
+      </div>
+    </form>
+  </div>
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script>
+    let selectedRole = "customer";
+    let showPassword = false;
+
+    function isValidEmail(value) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
+    }
+
+    function isValidPhone(value) {
+      const cleaned = value.replace(/[\s\-()]/g, "");
+      return /^(?:\+91|0)?[6-9]\d{9}$/.test(cleaned);
+    }
+
+    function selectRole(role, el) {
+      selectedRole = role;
+      document.querySelectorAll(".role-pill").forEach(btn => btn.classList.remove("active"));
+      el.classList.add("active");
+    }
+
+    function togglePassword() {
+      const pwd = document.getElementById("password");
+      pwd.type = showPassword ? "password" : "text";
+      showPassword = !showPassword;
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const loginId = document.getElementById("loginId").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!isValidEmail(loginId) && !isValidPhone(loginId)) {
+        Toastify({
+          text: "Enter a valid email (example@domain.com) or Indian phone number",
+          backgroundColor: "#e74c3c",
+          duration: 3000
+        }).showToast();
+        return;
+      }
+
+      if (password.length < 6) {
+        Toastify({
+          text: "Password must be at least 6 characters",
+          backgroundColor: "#e74c3c",
+          duration: 3000
+        }).showToast();
+        return;
+      }
+
+      Toastify({
+        text: `Logged in as ${selectedRole}`,
+        backgroundColor: "linear-gradient(to right, #8FA31E, #556B2F)",
+        duration: 3000
+      }).showToast();
+    }
+
+
+    function closePopup() {
+      window.parent.closeLoginPopup();
+    }
+  </script>
+</body>
+</html>

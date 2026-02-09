@@ -1,0 +1,96 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Background Image */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  background: url("../assets/login_bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
+}
+
+
+/* Wrapper */
+.terms-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 60px 15px;
+}
+
+/* Terms Card */
+.terms-container {
+  max-width: 900px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 35px 40px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Headings */
+.terms-container h1 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 25px;
+}
+
+.terms-container h2 {
+  color: #2e7d32;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.terms-container h3 {
+  color: #1b5e20;
+  margin-top: 16px;
+}
+
+/* Text */
+.terms-container p,
+.terms-container li {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.terms-container ul {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+/* Button */
+.terms-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.accept-btn {
+  padding: 14px 40px;
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.accept-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(46, 125, 50, 0.4);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .terms-container {
+    padding: 25px;
+  }
+}
