@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Dashboard | AgroLogix</title>
+    <link rel="stylesheet" href="customer.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="logo">AgroLogix</div>
+
+      <!-- Search-box -->
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search products..." />
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-btn" id="cartBtn">
+          🛒 Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="nav-btn">📦 Orders</button>
+
+        <!-- Profile -->
+        <div class="profile" id="profileBtn">
+  <img src="https://i.imgur.com/6VBx3io.png" alt="Profile" />
+  <span id="customerNameText"></span>
+
+  <div class="profile-dropdown" id="profileDropdown">
+    <a href="#">👤 My Profile</a>
+    <a href="#">📦 Orders</a>
+    <a href="#">🎟️ Coupons</a>
+    <a href="#">⭐ SuperCoins</a>
+    <a href="#">💳 Saved Cards & Wallet</a>
+    <a href="#">📍 Saved Addresses</a>
+    <a href="#">❤️ Wishlist</a>
+    <a href="#">🎁 Gift Cards</a>
+    <a href="#">🔔 Notifications</a>
+    <hr/>
+    <a href="#" class="logout" onclick="logout()">🚪 Logout</a>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button onclick="filterCategory('all')">All</button>
+      <button onclick="filterCategory('rice')">Rice</button>
+      <button onclick="filterCategory('grains')">Grains</button>
+      <button onclick="filterCategory('vegetables')">Vegetables</button>
+      <button onclick="filterCategory('root_vegetables')">Root Vegetables</button>
+      <button onclick="filterCategory('tubers_bulbs')">Tubers & Bulbs</button>
+      <button onclick="filterCategory('spices')">Spices</button>
+      <button onclick="filterCategory('green_leafy')">GreenLeafy</button>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="greeting">
+        <h2 id="greetText"></h2>
+      </div>
+
+      <h2>🌾 Farmers Goods Marketplace</h2>
+      <p>
+        Buy fresh agricultural products directly from verified farmers with
+        complete transparency and fair pricing.
+      </p>
+    </div>
+
+    <!-- Cart & Orders Section
+<div class="quick-actions">
+
+  <div class="action-card" id="cartSection">
+    <h3>🛒 My Cart</h3>
+    <p>View items added to your cart and proceed to checkout.</p>
+    <button class="action-btn">Go to Cart</button>
+  </div>
+
+  <div class="action-card">
+    <h3>📦 My Orders</h3>
+    <p>Track your recent and past orders easily.</p>
+    <button class="action-btn">View Orders</button>
+  </div>
+
+</div> -->
+
+    <!-- Products -->
+    <div class="product-container">
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://media.istockphoto.com/id/519309790/photo/pile-of-raw-basmati-rice-with-a-spoon.jpg?s=612x612&w=0&k=20&c=A9A87HykypkOo5qLMQm6bZjBQn83NE1NHMppw8-6Tnc="
+          alt="Rice"/>
+        <div class="product-info">
+          <h3>Basmati Rice</h3>
+          <p>Farmer: Ramesh Kumar (Odisha)</p>
+          <p class="price" data-price="60">₹60 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYYgdZ9c9XLbtFs6zyVhcysc4Vj2Xsy1J8A&s"
+          alt="Sona Masoori"/>
+        <div class="product-info">
+          <h3>Sona Masoori</h3>
+          <p>Farmer: Ramesh Kumar (Odisha)</p>
+          <p class="price" data-price="55">₹55 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMj3_rhrXTod_vY_p9l4NBd0gnDiWKGTDVw&s"
+          alt="Brown Rice"/>
+        <div class="product-info">
+          <h3>Brown Rice</h3>
+          <p>Farmer: Ramesh Kumar (Odisha)</p>
+          <p class="price" data-price="100">₹100 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://thesurvivalmom.com/wp-content/uploads/2024/05/Depositphotos_238143194_XL-scaled.jpg"
+          alt="Parboiled Rice"/>
+        <div class="product-info">
+          <h3>Parboiled Rice</h3>
+          <p>Farmer: Ramesh Kumar (Odisha)</p>
+          <p class="price" data-price="50">₹50 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSWK9j6_4a0rXypQ1QCi4nsLJ0IIohup-40g&s"
+          alt="Jasmine Rice"/>
+        <div class="product-info">
+          <h3>Jasmine / Mogra Rice</h3>
+          <p>Farmer: Suresh Patnaik (Odisha)</p>
+          <p class="price" data-price="55">₹55 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyJY6Nvp9_M_PwKsC8A1xD1hni6NRytDwfdg&s"
+          alt="1121 Basmati Rice"/>
+        <div class="product-info">
+          <h3>1121 Basmati Rice</h3>
+          <p>Farmer: Harpreet Singh (Punjab)</p>
+          <p class="price" data-price="85">₹85 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvrSwCnzmKC59tF-aIzrGwys-PGKE_3zIVPg&s"
+          alt="Sugandha Rice"/>
+        <div class="product-info">
+          <h3>Sugandha Rice</h3>
+          <p>Farmer: Anil Singh (UP)</p>
+          <p class="price" data-price="60">₹60 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuD7SfQzMWwcCWoSc8NTHZPTyLpLu9fVYHyQ&s"
+          alt="Wada Kolam Rice"/>
+        <div class="product-info">
+          <h3>Wada Kolam Rice</h3>
+          <p>Farmer: Mahesh Patil (Maharashtra)</p>
+          <p class="price" data-price="52">₹52 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4J18JQsamIzEnU7atkc6BWrDZVhRqSS4CTg&s"
+          alt="HMT Rice"/>
+        <div class="product-info">
+          <h3>HMT Rice</h3>
+          <p>Farmer: Ravi Deshmukh (Karnataka)</p>
+          <p class="price" data-price="68">₹68 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC0xy5DB49FMLtHgFAQL5SPzyxdeRrv3840A&s"
+          alt="Rajmudi Rice"/>
+        <div class="product-info">
+          <h3>Rajmudi Rice</h3>
+          <p>Farmer: Suresh Gowda (Karnataka)</p>
+          <p class="price" data-price="95">₹95 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVMoNHTfdGXmO87Ge1_pwLJHRkYrMqTY8JXA&s"
+          alt="Black Rice"/>
+        <div class="product-info">
+          <h3>Black Rice</h3>
+          <p>Farmer: Nungshi Devi (Manipur)</p>
+          <p class="price" data-price="120">₹120 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTylt3dyNIkvbl7lAfDrEYSOUnJfXsgI4Zhww&s"
+          alt="Red Rice"/>
+        <div class="product-info">
+          <h3>Red Rice</h3>
+          <p>Farmer: Anil Shetty (Kerala)</p>
+          <p class="price" data-price="85">₹85 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgw7ZDqo3kkQYrHXfZmAe0YLSG4bzvbPFUjA&s"
+          alt="Gobindobhog Rice"/>
+        <div class="product-info">
+          <h3>Gobindobhog Rice</h3>
+          <p>Farmer: Subhash Mondal (West Bengal)</p>
+          <p class="price" data-price="110">₹110 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR26vjXo1qyAEA4Za5_QFerzoTr37V_POniyg&s"
+          alt="Ambemohar Rice"/>
+        <div class="product-info">
+          <h3>Ambemohar Rice</h3>
+          <p>Farmer: Ganesh Patil (Maharashtra)</p>
+          <p class="price" data-price="90">₹90 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a3/White_rice.jpg"
+          alt="Indrayani Rice"/>
+        <div class="product-info">
+          <h3>Indrayani Rice</h3>
+          <p>Farmer: Sunil Jadhav (Maharashtra)</p>
+          <p class="price" data-price="75">₹75 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rice">
+        <img
+          src="https://chheda.store/wp-content/uploads/2021/06/KOLAM-A-AND-AAA.jpg"
+          alt="Kolam Rice"/>
+        <div class="product-info">
+          <h3>Kolam Rice</h3>
+          <p>Farmer: Prakash Rao (Telangana)</p>
+          <p class="price" data-price="60">₹60 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://www.verywellhealth.com/thmb/wK9PMBR6JBbJgDRNab5LrZNDMIA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/VWH-GettyImages-1396569940-2163c2aed5814484a20caba84e1d88ca.jpg"
+          alt="Capsicum"/>
+        <div class="product-info">
+          <h3>Capsicum</h3>
+          <p>Farmer: Suresh Patnaik</p>
+          <p class="price" data-price="40">₹40 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_bti4E61jiMuaRqnP6XL213Tf0I6RJ0_fRQ&s"
+          alt="Cauli-Flower"/>
+        <div class="product-info">
+          <h3>Cauli-Flower</h3>
+          <p>Farmer: Mahesh Nayak</p>
+          <p class="price" data-price="25">₹25 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://static.wixstatic.com/media/e403f6_3ee786bdbac946e29b9bf358c7faca6c~mv2.jpg/v1/fill/w_540,h_514,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/e403f6_3ee786bdbac946e29b9bf358c7faca6c~mv2.jpg"
+          alt="Brinjal"/>
+        <div class="product-info">
+          <h3>Brinjal</h3>
+          <p>Farmer: Mahesh Nayak</p>
+          <p class="price" data-price="40">₹40 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://marvel-b1-cdn.bc0a.com/f00000000214316/transform.octanecdn.com/crop/900x600/https://octanecdn.com/pikearmstrong/armstronggardencom_109426483.jpeg"
+          alt="Tomato"/>
+        <div class="product-info">
+          <h3>Tomato</h3>
+          <p>Farmer: Mahesh Nayak</p>
+          <p class="price" data-price="45">₹45 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://5.imimg.com/data5/ANDROID/Default/2025/1/484855154/JQ/IE/IX/160347834/product-jpeg.jpg"
+          alt="Onion"/>
+        <div class="product-info">
+          <h3>Onion</h3>
+          <p>Farmer: Suresh Dhal</p>
+          <p class="price" data-price="35">₹35 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXZrMqnp6XkG4n-xPGUjMeTqHux1TlYfb4-w&s"
+          alt="Cabage"/>
+        <div class="product-info">
+          <h3>Cabage</h3>
+          <p>Farmer: Guru Charan</p>
+          <p class="price" data-price="25">₹25 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY5QaL4Go2uxe2DuYprhnO9wn8Y2_qhoXQGw&s"
+          alt="Cucumber"/>
+        <div class="product-info">
+          <h3>Cucumber</h3>
+          <p>Farmer: Guru Charan</p>
+          <p class="price" data-price="30">₹30 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5EvmzYqfc4LkuE4ZTL0vgdCYaZ9W4JEsCOA&s"
+          alt="white radish"/>
+        <div class="product-info">
+          <h3>white radish</h3>
+          <p>Farmer: Ramesh Panda</p>
+          <p class="price" data-price="30">₹30 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKCsLXLmizBAftCuA3hHMfEu0jK4PG-D1rZQ&s"
+          alt="Carrot"/>
+        <div class="product-info">
+          <h3>Carrot</h3>
+          <p>Farmer: Mohan Agrawal</p>
+          <p class="price" data-price="40">₹40 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGWC2Gozrmyfq9xgS3YzyCHRUFAzNNxQ2JwQ&s"
+          alt="Bins"/>
+        <div class="product-info">
+          <h3>Bins</h3>
+          <p>Farmer: Raj Deo</p>
+          <p class="price" data-price="50">₹50 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTQ94vMAe-hI2kQaDqUq_Hln4uFtMj22wUcg&s"
+          alt="Green-Peas"/>
+        <div class="product-info">
+          <h3>Green-Peas</h3>
+          <p>Farmer: Ravi Pawar</p>
+          <p class="price" data-price="40">₹40 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd_N6URlZNxngN-cY7W3d4ZRESBAAJWsN5ug&s"
+          alt="Bitter"/>
+        <div class="product-info">
+          <h3>Bitter</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="70">₹70/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- root_vegetables -->
+
+      <div class="product-card" data-category="root_vegetables">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy69qRbm96tRywTxcFIDlQzEbYN-3zk3rv1w&s"
+          alt="BeetRoot"/>
+        <div class="product-info">
+          <h3>BeetRoot</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="70">₹70/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="root_vegetables">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBwB8p5VjA8Q3PAuiNtimbX36Wn4SAN6dlIA&s" 
+  alt="Celeriac">
+  <div class="product-info">
+    <h3>Celeriac</h3>
+    <p>Farmer: Anil Chauhan (HP)</p>
+    <p class="price" data-price="80">₹80 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="root_vegetables">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxrMWfmSesNW22_NZ16bev7GOC2qd_m9QtJg&s" 
+  alt="Rutabaga">
+  <div class="product-info">
+    <h3>Rutabaga</h3>
+    <p>Farmer: Sukhdev Singh (Punjab)</p>
+    <p class="price" data-price="60">₹60 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="root_vegetables">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ6T1xQAK4SplRS19flMh_Jz8KlHsz1mFUbA&s" 
+  alt="Red Radish">
+  <div class="product-info">
+    <h3>Red Radish</h3>
+    <p>Farmer: Ramesh Yadav (UP)</p>
+    <p class="price" data-price="35">₹35 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="root_vegetables">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR550Q7jrlMIVgCl1heLZz02HCEpGcCLon9Ng&s" 
+  alt="Parsnip">
+  <div class="product-info">
+    <h3>Parsnip</h3>
+    <p>Farmer: Mahendra Rawat (Uttarakhand)</p>
+    <p class="price" data-price="70">₹70 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<!-- tubers_bulbs -->
+
+<div class="product-card" data-category="tubers_bulbs">
+        <img
+          src="https://www.simplotfood.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F0dkgxhks0leg%2FRKiZ605RAV8kjDQnxFCWP%2Fb03b8729817c90b29b88d536bfd37ac5%2F9-Unusual-Uses-For-Potatoes.jpg%3Ffm%3Dwebp&w=1920&q=75"
+          alt="Potato"/>
+        <div class="product-info">
+          <h3>Potato</h3>
+          <p>Farmer: Mahesh Nayak</p>
+          <p class="price" data-price="30">₹30 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+<div class="product-card" data-category="tubers_bulbs">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxOiTi57b5PkNx0_c1M34T3u1d1yPCpX7Pdw&s" 
+  alt="Sweet Potato">
+  <div class="product-info">
+    <h3>Sweet Potato</h3>
+    <p>Farmer: Raghunath Naik (Odisha)</p>
+    <p class="price" data-price="45">₹45 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="tubers_bulbs">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGCBSGmHXP6rLlDdGsBUB5fleOAfmU9BvbFQ&s" 
+  alt="Garlic">
+  <div class="product-info">
+    <h3>Garlic</h3>
+    <p>Farmer: Baldev Singh (Madhya Pradesh)</p>
+    <p class="price" data-price="120">₹120 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="tubers_bulbs">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSza0FLEK5fsqCUalYcS9YK3yXV4IlogTFSaA&s" 
+  alt="Shallot">
+  <div class="product-info">
+    <h3>Shallot</h3>
+    <p>Farmer: Suresh Iyer (Tamil Nadu)</p>
+    <p class="price" data-price="90">₹90 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="tubers_bulbs">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7E7AtLtVzoKO-5cnel4wjNJ-mQlUgC_2H4Q&s" 
+  alt="Leek">
+  <div class="product-info">
+    <h3>Leek</h3>
+    <p>Farmer: Dinesh Chauhan (Haryana)</p>
+    <p class="price" data-price="70">₹70 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+      <div class="product-card" data-category="grains">
+        <img
+          src="https://www.ecowatch.com/wp-content/uploads/2021/10/1672083931-img.jpg"
+          alt="Wheat"/>
+        <div class="product-info">
+          <h3>Wheat</h3>
+          <p>Farmer: Mahesh Nayak(Odisha) </p>
+          <p class="price" data-price="30">₹30 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="grains">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBX9cI-uNesqwZmSfwc6BWo5e7DVmm4T5l5Q&s"
+          alt="Toor Dal"/>
+        <div class="product-info">
+          <h3>Toor Dal</h3>
+          <p>Farmer: Manoj ku. Ahuja</p>
+          <p class="price" data-price="130">₹130 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzDyMb4ntgoTwSfikgLI6jdDsCWZsxi1p3jg&s" 
+  alt="Green Gram">
+  <div class="product-info">
+    <h3>Green Gram</h3>
+    <p>Farmer: Raju Yadav (Madhya Pradesh)</p>
+    <p class="price" data-price="90">₹90 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-2g0ekeHE-MBDgoakkbDJLXXTyxepyqXlog&s" 
+  alt="Black Gram">
+  <div class="product-info">
+    <h3>Black Gram</h3>
+    <p>Farmer: Vinod Patel (Gujarat)</p>
+    <p class="price" data-price="110">₹110 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0dmqYt2_MNtzAO6AS8XWZZ2RTYy9yoy4Ccg&s" 
+  alt="Bengal Gram">
+  <div class="product-info">
+    <h3>Bengal Gram</h3>
+    <p>Farmer: Shankar Lal (Rajasthan)</p>
+    <p class="price" data-price="75">₹75 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShJkbFipLH2SFnXgbohgdm1bfXa28h2CpCrg&s" 
+  alt="Kidney Beans">
+  <div class="product-info">
+    <h3>Kidney Beans</h3>
+    <p>Farmer: Mohit Negi (Uttarakhand)</p>
+    <p class="price" data-price="130">₹130 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH43ETI63lMWwi2GV75ZMFHofPmB-nYhs9cg&s" 
+  alt="Moth Beans">
+  <div class="product-info">
+    <h3>Moth Beans</h3>
+    <p>Farmer: Kailash Meena (Rajasthan)</p>
+    <p class="price" data-price="100">₹100 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzM-jdmFmDzXG4HCoWQCt2E0uv8q3DPkGtA&s" 
+  alt="White Chickpeas">
+  <div class="product-info">
+    <h3>White Chickpeas</h3>
+    <p>Farmer: Arjun Singh (Maharashtra)</p>
+    <p class="price" data-price="85">₹85 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3S-MIUqxzEb4Oi3KFVrjm8u1H7rUCo3thFg&s" 
+  alt="Sweet Corn">
+  <div class="product-info">
+    <h3>Sweet Corn</h3>
+    <p>Farmer: Dinesh Patil (Karnataka)</p>
+    <p class="price" data-price="45">₹45 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card" data-category="grains">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlBsEQfYQxtadeKy2ewUnC06OdFZaC2ESrvA&s" 
+  alt="Baby Corn">
+  <div class="product-info">
+    <h3>Baby Corn</h3>
+    <p>Farmer: Sunil Verma (Haryana)</p>
+    <p class="price" data-price="60">₹60 / kg</p>
+    <button class="cart-btn">🛒 Add to Cart</button>
+  </div>
+</div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5ljsKYXt-s1sywOydx9vw16wnC4ldi1G8Mw&s"
+          alt="Black-pepper"/>
+        <div class="product-info">
+          <h3>Black-pepper</h3>
+          <p>Farmer: Manoj ku. Ahuja</p>
+          <p class="price" data-price="350">₹350 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqz8MGj4BKHerxhYJa4QZfGUvcvN6CYcgWfw&s"
+          alt="Cinnamon"/>
+        <div class="product-info">
+          <h3>Cinnamon</h3>
+          <p>Farmer: Manoj ku. Ahuja</p>
+          <p class="price" data-price="350">₹350 / kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXIcS7ENuhRL_ixWhHmpA_-iESyttciv3UTw&s"
+          alt="Turmeric"/>
+        <div class="product-info">
+          <h3>Turmeric</h3>
+          <p>Farmer: Manoj ku. Ahuja</p>
+          <p class="price" data-price="500">₹500/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkGas8eVZCoiT99zXKk_4JgtZ7TrKaguoYIQ&s"
+          alt="Fenugreek-seeds"/>
+        <div class="product-info">
+          <h3>Fenugreek-seeds</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="100">₹100/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ090yhk9WJwqsqq2rsSkDEUJ_8EIcl2p8Sew&s"
+          alt="Mustard-seeds"/>
+        <div class="product-info">
+          <h3>Mustard-seeds</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="150">₹150/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_JeSxS9XD4F9aSiwaGpd3H5_d3Ig9JefWw&s"
+          alt="laung"/>
+        <div class="product-info">
+          <h3>laung</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="300">₹300/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://www.goodfoodbar.com/cdn/shop/files/NoFKGD0JMwifQF2oMoaWdkSJAVfXeeF3eYnRk02W.jpg?v=1694550696"
+          alt="Elaichi"/>
+        <div class="product-info">
+          <h3>Elaichi</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="1800">₹1800/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQECdhdJD_AVfxqIqs458rd2DLqnXa_mGMOA&s"
+          alt="Cumin Seeds"/>
+        <div class="product-info">
+          <h3>Cumin Seeds</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="350">₹350/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spices">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_pxYHRE4xxzizhVniWdcNOPv0y9qqvksuDA&s"
+          alt="Red dry Chilli"/>
+        <div class="product-info">
+          <h3>Red dry Chilli</h3>
+          <p>Farmer: Krishna desai</p>
+          <p class="price" data-price="100">₹100/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFM-tgWra3ToigX6xOw1l--Nk4EGq0ezWvHQ&s"
+          alt="Spinach"/>
+        <div class="product-info">
+          <h3>Spinach</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="50">₹50/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShq_eeviZrj_6kFgvVY7ThhMBUs45OPTmMLQ&s"
+          alt="Fenugreek-green"/>
+        <div class="product-info">
+          <h3>Fenugreek-green</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="40">₹40/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyaEiV3U7AIsS78tcVldw3aIT2ZvvE2KI2Xg&s"
+          alt="Amaranth leaves"/>
+        <div class="product-info">
+          <h3>Amaranth leaves</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="50">₹50/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP1ggA01AHEyORBG5jwssdBfc66o82_0Q9UQ&s"
+          alt="Mustard greens"/>
+        <div class="product-info">
+          <h3>Mustard greens</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="50">₹50/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOEmwhy46-Sqf2CRoQbqXzQ1FtrBIVEd-y8A&s"
+          alt="Slender Amaranth"/>
+        <div class="product-info">
+          <h3>Slender Amaranth</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="40">₹40/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBf7hlBY605SrOHvzSzRKRvYnoxFFCbiEL3g&s"
+          alt="Chickpea Leaves"/>
+        <div class="product-info">
+          <h3>Chickpea Leaves</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="40">₹40/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="green_leafy">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRerESDuscwIlNSBtjs8ax1vBjMgVYMTBQCcA&s"
+          alt="Water Spinach"/>
+        <div class="product-info">
+          <h3>Water Spinach</h3>
+          <p>Farmer: Naman Ojha</p>
+          <p class="price" data-price="40">₹40/ kg</p>
+          <button class="cart-btn">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quantity model -->
+    <div id="qtyModal" class="modal">
+      <div class="modal-box">
+        <h3 id="modalProductName"></h3>
+
+        <div class="qty-row">
+          <input type="number" id="modalQty" placeholder="Enter quantity" />
+          <select id="modalUnit">
+            <option value="kg">Kg</option>
+            <option value="quintal">Quintal</option>
+            <option value="ton">Ton</option>
+          </select>
+        </div>
+
+        <p id="modalPriceText">Price: ₹0</p>
+
+        <button id="confirmAdd" class="confirm-btn">Add to Cart</button>
+        <button onclick="closeModal()" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+
+    <script src="customer.js"></script>
+  </body>
+</html>
