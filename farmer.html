@@ -6,20 +6,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="farmer.css">  
-
-
+<link rel="stylesheet" href="farmer.css">
 </head>
 
 <body>
 
+<!-- <header class="navbar">
+  <div>🌾 AgroLogix</div>
+  <div class="nav-center">
+    <button class="active" onclick="showSection('myproducts',this)">My Products</button>
+    <button onclick="showSection('b_vehicles',this)"> Book Vehicles</button>
+    <button onclick="showSection('r_equipment',this)"> Rent Equipment</button>
+    <button onclick="showSection('r_storage',this)"> Rent Storage</button>
+  </div>
+  <div class="greeting" id="greeting"></div>
+</header> -->
 
 <header class="navbar">
+  <!-- <div class="logo">🌾 AgroLogix</div> -->
+   <!-- <div class="logo-wrapper">
+    <div class="logo">🌾 AgroLogix</div>
+
   
+  <div class="pendulum-popup" id="pendulumPopup">
+    <div class="pendulum-title" id="pendulumTitle"></div>
+    <div class="pendulum-quote" id="pendulumQuote"></div>
+  </div>
+</div> -->
    <div class="logo-wrapper">
      <div class="logo">🌾 AgroLogix</div>
 
-<div class="nav-center">
+  <!-- Floating Pendulum Popup -->
+  <div class="pendulum-popup" id="pendulumPopup">
+    <div class="rope"></div>
+    <div class="bubble">
+      <div class="pendulum-title" id="pendulumTitle"></div>
+      <div class="pendulum-quote" id="pendulumQuote"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <div class="nav-center">
     <button class="active" onclick="showSection('myproducts',this)">My Products</button>
     <button onclick="showSection('b_vehicles',this)">Book Vehicles</button>
     <button onclick="showSection('r_equipment',this)">Rent Equipment</button>
@@ -27,7 +57,15 @@
   </div>
 
   <div class="nav-right">
-   
+    <!-- <span class="greeting" id="greeting"></span> -->
+
+    <!-- <div class="profile" onclick="toggleProfileMenu()">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+        alt="Farmer Profile"
+      >
+      <span>{Farmer Name}</span>
+    </div> -->
     <div class="profile-wrapper">
   <div class="profile" onclick="toggleProfileMenu()">
     <img
@@ -115,6 +153,8 @@
 <!-- JavaScript -->
 
 <script src="farmer.js">
+
+
 </script>
 
 </body>

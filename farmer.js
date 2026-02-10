@@ -1,6 +1,7 @@
 let currentSection="";
 
-//Optional
+//Pendulom Pop-up
+
 const quotes = [
   "Small seeds grow big futures 🌱",
   "Patience today, harvest tomorrow 🌾",
@@ -8,7 +9,6 @@ const quotes = [
   "Grow smart, grow strong",
   "Nature rewards consistency"
 ];
-
 
 
 
@@ -56,7 +56,7 @@ document.querySelectorAll(`#${section} .card`).forEach(card => {
 }
 
 
-/* Pop-Up */
+/* MODAL LOGIC */
 function openModal(section){
   currentSection=section;
   document.getElementById("modal").style.display="block";
@@ -497,4 +497,3 @@ function renderProducts(){
 
 
 renderProducts();
-
