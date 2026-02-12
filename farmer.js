@@ -1,4 +1,6 @@
 let currentSection="";
+let isEditingProfile = false;
+
 
 //Pendulom Pop-up
 
@@ -22,17 +24,18 @@ let editIndex = null;
 
 //Profile DropDown
 function toggleProfileMenu(){
-  const menu = document.getElementById("profileMenu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+  document.getElementById("profileMenu").classList.toggle("active");
 }
 
-/* Close dropdown when clicking outside */
 document.addEventListener("click", function(e){
-  const profile = document.querySelector(".profile-wrapper");
-  if(!profile.contains(e.target)){
-    document.getElementById("profileMenu").style.display = "none";
+  const wrapper = document.querySelector(".profile-wrapper");
+  const menu = document.getElementById("profileMenu");
+
+  if(!wrapper.contains(e.target)){
+    menu.classList.remove("active");
   }
 });
+
 
 
 
@@ -105,6 +108,215 @@ function closeModal(){
   modal.style.display="none";
 }
 
+
+// Open Modal when Profile clicked
+function openProfileModal() {
+  document.getElementById("profileModal").style.display = "flex";
+  document.body.classList.add("modal-open");
+}
+
+// Close Modal
+function closeProfileModal() {
+  document.getElementById("profileModal").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+//Help PopUp
+function openHelpModal(){
+  document.getElementById("helpModal").style.display = "flex";
+  document.body.classList.add("modal-open");
+}
+
+function closeHelpModal(){
+  document.getElementById("helpModal").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+function toggleFAQ(element){
+  const answer = element.nextElementSibling;
+  answer.style.display =
+    answer.style.display === "block" ? "none" : "block";
+}
+
+//PrivacyCentre PopUp
+function openPrivacyModal(){
+  document.getElementById("privacyModal").style.display = "flex";
+  document.body.classList.add("modal-open");
+}
+
+function closePrivacyModal(){
+  document.getElementById("privacyModal").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+function confirmDeactivate(){
+  if(confirm("Are you sure you want to deactivate your account?")){
+    alert("Your account has been deactivated.");
+  }
+}
+
+//LogOut  PopUp Open_Close
+function openLogoutModal(){
+  document.getElementById("logoutModal").style.display = "flex";
+  document.body.classList.add("modal-open");
+}
+
+function closeLogoutModal(){
+  document.getElementById("logoutModal").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+
+function logoutUser(){
+
+  document.getElementById("logoutMessage").innerText = "Logging Out...";
+  document.getElementById("logoutSpinner").style.display = "block";
+
+  // hide buttons
+  document.querySelector(".logout-buttons").style.display = "none";
+
+  setTimeout(function(){
+    window.location.href = "homepage.html";
+  }, 1500);
+}
+
+
+
+
+// Save Profile
+const profileForm = document.getElementById("profileForm");
+const saveBtn = profileForm.querySelector(".save-btn");
+
+profileForm.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const profileData = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    age: age.value,
+    contact: contact.value,
+    email: email.value,
+    village: village.value,            
+    district: district.value,
+    state: state.value,
+    pincode: pincode.value
+  };
+
+  localStorage.setItem("farmerProfile", JSON.stringify(profileData));
+
+  displayProfile();
+
+  // UX Behaviour
+  profileForm.style.display = "none";
+  document.getElementById("profileDisplay").style.display = "block";
+
+  saveBtn.innerText = "Save Profile";
+  isEditingProfile = false;
+});
+
+
+// Display Profile
+function displayProfile(){
+  const data = JSON.parse(localStorage.getItem("farmerProfile"));
+  if(!data) return;
+
+  document.getElementById("profileDisplay").innerHTML = `
+    <div class="profile-card">
+      <h3>${data.firstName} ${data.lastName}</h3>
+      <p><strong>Age:</strong> ${data.age}</p>
+      <p><strong>Contact:</strong> ${data.contact}</p>
+      <p><strong>Email:</strong> ${data.email || "Not Provided"}</p>
+      <p><strong>Location:</strong> ${data.village}, ${data.district}, ${data.state} - ${data.pincode}</p>
+
+      <div style="margin-top:15px;">
+        <button class="edit-btn" onclick="editProfile()">Edit</button>
+        <button class="delete-btn" onclick="deleteProfile()">Delete</button>
+      </div>
+    </div>
+  `;
+
+  profileForm.style.display = "none";
+  document.getElementById("profileDisplay").style.display = "block";
+}
+
+
+// Edit Profile
+function editProfile(){
+  const data = JSON.parse(localStorage.getItem("farmerProfile"));
+  if(!data) return;
+
+  firstName.value = data.firstName;
+  lastName.value = data.lastName;
+  age.value = data.age;
+  contact.value = data.contact;
+  email.value = data.email;
+  village.value = data.village;
+  district.value = data.district;
+  state.value = data.state;
+  pincode.value = data.pincode;
+
+  profileForm.style.display = "block";
+  document.getElementById("profileDisplay").style.display = "none";
+
+  saveBtn.innerText = "Update Profile";
+  isEditingProfile = true;
+}
+
+
+// Delete Profile
+function deleteProfile(){
+  if(confirm("Delete profile permanently?")){
+    localStorage.removeItem("farmerProfile");
+
+    document.getElementById("profileDisplay").innerHTML = "";
+    document.getElementById("profileDisplay").style.display = "none";
+
+    profileForm.style.display = "block";
+    profileForm.reset();
+
+    saveBtn.innerText = "Save Profile";
+    isEditingProfile = false;
+  }
+}
+//Activity Modal PopUP
+// function openActivityModal() {
+//     const modal = document.getElementById("activityModal");
+//     const menu = document.getElementById("profileMenu");
+
+//     if (modal) {
+//         modal.style.display = "flex";
+//     }
+
+//     if (menu) {
+//         menu.style.display = "none";
+//     }
+// }
+
+// function closeActivityModal() {
+//     const modal = document.getElementById("activityModal");
+
+//     if (modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+function openActivityModal() {
+    const modal = document.getElementById("activityModal");
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeActivityModal() {
+    const modal = document.getElementById("activityModal");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+
+
+
+// Load profile on page refresh
+window.onload = displayProfile;
 
 function saveItem(){
   const name = document.getElementById("name").value.trim();

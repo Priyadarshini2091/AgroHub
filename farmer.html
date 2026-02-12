@@ -11,43 +11,20 @@
 
 <body>
 
-<!-- <header class="navbar">
-  <div>🌾 AgroLogix</div>
-  <div class="nav-center">
-    <button class="active" onclick="showSection('myproducts',this)">My Products</button>
-    <button onclick="showSection('b_vehicles',this)"> Book Vehicles</button>
-    <button onclick="showSection('r_equipment',this)"> Rent Equipment</button>
-    <button onclick="showSection('r_storage',this)"> Rent Storage</button>
-  </div>
-  <div class="greeting" id="greeting"></div>
-</header> -->
-
 <header class="navbar">
-  <!-- <div class="logo">🌾 AgroLogix</div> -->
-   <!-- <div class="logo-wrapper">
+
+  <div class="logo-wrapper">
     <div class="logo">🌾 AgroLogix</div>
 
-  
-  <div class="pendulum-popup" id="pendulumPopup">
-    <div class="pendulum-title" id="pendulumTitle"></div>
-    <div class="pendulum-quote" id="pendulumQuote"></div>
-  </div>
-</div> -->
-   <div class="logo-wrapper">
-     <div class="logo">🌾 AgroLogix</div>
-
-  <!-- Floating Pendulum Popup -->
-  <div class="pendulum-popup" id="pendulumPopup">
-    <div class="rope"></div>
-    <div class="bubble">
-      <div class="pendulum-title" id="pendulumTitle"></div>
-      <div class="pendulum-quote" id="pendulumQuote"></div>
+    <!-- Floating Pendulum Popup -->
+    <div class="pendulum-popup" id="pendulumPopup">
+      <div class="rope"></div>
+      <div class="bubble">
+        <div class="pendulum-title" id="pendulumTitle"></div>
+        <div class="pendulum-quote" id="pendulumQuote"></div>
+      </div>
     </div>
   </div>
-</div>
-
-
-
 
   <div class="nav-center">
     <button class="active" onclick="showSection('myproducts',this)">My Products</button>
@@ -57,40 +34,30 @@
   </div>
 
   <div class="nav-right">
-    <!-- <span class="greeting" id="greeting"></span> -->
-
-    <!-- <div class="profile" onclick="toggleProfileMenu()">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-        alt="Farmer Profile"
-      >
-      <span>{Farmer Name}</span>
-    </div> -->
     <div class="profile-wrapper">
-  <div class="profile" onclick="toggleProfileMenu()">
-    <img
-      src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-      alt="Farmer Profile"
-    >
-    <span>Farmer Profile</span>
+
+      <div class="profile" onclick="toggleProfileMenu()">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Farmer Profile">
+        <span>Farmer Profile</span>
+      </div>
+
+      <!-- DropDown Elements -->
+      <div class="profile-menu" id="profileMenu">
+        <div class="menu-item" onclick="openProfileModal()">👤 Profile</div>
+        <div class="menu-item" onclick="openActivityModal()">📊 Activity</div>
+        <div class="menu-item" onclick="openHelpModal()">❓ Help</div>
+        <div class="menu-item" onclick="openPrivacyModal()">🔐 Privacy Centre</div>
+        <div class="menu-item" onclick="openLogoutModal()">🚪 Logout</div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="profile-menu" id="profileMenu">
-    <div class="menu-item">👤 Profile</div>
-    <div class="menu-item">📊 Activity</div>
-    <div class="menu-item">❓ Help</div>
-    <div class="menu-item">🔒 Privacy Centre</div>
-    <div class="menu-item logout">🚪 Logout</div>
-  </div>
-</div>
-
-  </div>
 </header>
 
 
-
 <!-- MyProducts -->
-<section class="section active " id="myproducts">
+<section class="section active" id="myproducts">
   <div class="page-header">
     <h2>My Products</h2>
     <div class="actions">
@@ -101,18 +68,18 @@
   <div class="grid" id="productsGrid"></div>
 </section>
 
+
 <!-- Vehicle Booking -->
 <section class="section" id="b_vehicles">
   <div class="page-header">
-    <h2> Book Transport Vehicles</h2>
+    <h2>Book Transport Vehicles</h2>
     <div class="actions">
       <input placeholder="Search Vehicle" onkeyup="searchCards(this,'b_vehicles')">
     </div>
   </div>
-  <div class="grid" id="vehiclesGrid">
-
-  </div>
+  <div class="grid" id="vehiclesGrid"></div>
 </section>
+
 
 <!-- Rent Equipment -->
 <section class="section" id="r_equipment">
@@ -125,7 +92,6 @@
   <div class="grid" id="equipmentGrid"></div>
 </section>
 
- 
 
 <!-- Rent Storage -->
 <section class="section" id="r_storage">
@@ -138,7 +104,8 @@
   <div class="grid" id="storageGrid"></div>
 </section>
 
-<!-- MODAL -->
+
+<!-- Product Modal -->
 <div class="modal" id="modal">
   <div class="modal-box">
     <h3 id="modalTitle"></h3>
@@ -150,12 +117,233 @@
   </div>
 </div>
 
-<!-- JavaScript -->
 
-<script src="farmer.js">
+<!-- Profile PopUP -->
+<div class="profile-modal" id="profileModal">
+  <div class="profile-container">
+
+    <h2 class="modal-heading">Profile Detail</h2>
+
+    <form id="profileForm">
+      <div class="form-grid">
+        <input type="text" id="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" placeholder="Last Name" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="tel" id="contact" placeholder="Contact Number" maxlength="10" required>
+        <input type="email" id="email" placeholder="Email (Optional)">
+        <input type="text" id="village" placeholder="Village / Location" required>
+        <input type="text" id="district" placeholder="District" required>
+        <input type="text" id="state" placeholder="State" required>
+        <input type="text" id="pincode" placeholder="Pin Code" maxlength="6" required>
+      </div>
+
+      <button type="submit" class="save-btn">Save Profile</button>
+    </form>
+
+    <div id="profileDisplay" class="profile-display"></div>
+
+    <button onclick="closeProfileModal()" class="close-btn">Close</button>
+
+  </div>
+</div>
+
+<!-- Activity PopUp-->
+<div class="activity-modal" id="activityModal">
+  <div class="activity-container">
+    <h2 class="modal-heading">📊 My Activity History</h2>
+
+<div class="activity-table-wrapper">
+
+  <div class="activity-table">
+
+    
+    <div class="table-row table-header">
+      <div>SL No</div>
+      <div>Section</div>
+      <div>Date</div>
+      <div>Cost (₹)</div>
+      <div>Status</div>
+    </div>
+
+    
+    <div class="table-row">
+      <div>1</div>
+      <div>🛒 Selling</div>
+      <div>10 Feb 2026</div>
+      <div>4500</div>
+      <div><span class="status success">Completed</span></div>
+    </div>
+
+    
+    <div class="table-row">
+      <div>2</div>
+      <div>🚜 Vehicle Booking</div>
+      <div>08 Feb 2026</div>
+      <div>1500</div>
+      <div><span class="status pending">Pending</span></div>
+    </div>
+
+    
+    <div class="table-row">
+      <div>3</div>
+      <div>⚙ Equipment Rental</div>
+      <div>05 Feb 2026</div>
+      <div>3200</div>
+      <div><span class="status success">Approved</span></div>
+    </div>
+
+    
+    <div class="table-row">
+      <div>4</div>
+      <div>🏬 Storage</div>
+      <div>01 Feb 2026</div>
+      <div>2000</div>
+      <div><span class="status danger">Expired</span></div>
+    </div>
+
+  </div>
+
+</div>
+
+<button onclick="closeActivityModal()" class="close-btn">Close</button>
+
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div class="help-modal" id="helpModal">
+  <div class="help-container">
+
+    <div class="help-header">
+      <h2>Help & Support</h2>
+      <span class="close-btn" onclick="closeHelpModal()">✖</span>
+    </div>
+
+    
+    <div class="faq-section">
+      <h3>Frequently Asked Questions</h3>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How to sell a product?
+        </div>
+        <div class="faq-answer">
+          Go to My Products section and click "Add Product".
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How to book a vehicle?
+        </div>
+        <div class="faq-answer">
+          Navigate to Vehicle section and click "Book Now".
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How rental system works?
+        </div>
+        <div class="faq-answer">
+          Select equipment/storage, choose duration and confirm booking.
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="support-form">
+      <h3>Contact Support</h3>
+
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+
+      <select>
+        <option>Select Issue Type</option>
+        <option>Product Issue</option>
+        <option>Vehicle Booking</option>
+        <option>Rental Issue</option>
+        <option>Account Problem</option>
+      </select>
+
+      <textarea placeholder="Describe your issue..." rows="4"></textarea>
+
+      <button class="submit-btn">Submit Request</button>
+    </div>
+
+    
+    <div class="contact-card">
+      <p><strong>Email:</strong> agrohub234@gmail.com</p>
+      <p><strong>Helpline:</strong> +91 9864728927</p>
+      <p><strong>Working Hours:</strong> 08:00 AM – 05:00 PM</p>
+    </div>
+
+  </div>
+</div>
+    <!-- Privacy Centre Modal -->
+<div class="privacy-modal" id="privacyModal">
+  <div class="privacy-container">
+
+    <div class="privacy-header">
+      <h2>Privacy Centre</h2>
+      <span class="close-btn" onclick="closePrivacyModal()">✖</span>
+    </div>
+
+    <!-- Change Email -->
+    <div class="privacy-section">
+      <h3>Change Email</h3>
+
+      <input type="email" placeholder="New Email Address">
+      <button class="primary-btn">Update Email</button>
+    </div>
+
+    <!-- Change Password -->
+    <div class="privacy-section">
+      <h3>Change Password</h3>
+
+      <input type="password" placeholder="Current Password">
+      <input type="password" placeholder="New Password">
+      <input type="password" placeholder="Confirm New Password">
+
+      <button class="primary-btn">Update Password</button>
+    </div>
+
+    <!-- Deactivate Account -->
+    <div class="privacy-section danger-zone">
+      <h3>Deactivate Account</h3>
+      <p>This action will temporarily disable your account access.</p>
+
+      <button class="danger-btn" onclick="confirmDeactivate()">
+        Deactivate Account
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Logout Modal -->
+<div class="logout-modal" id="logoutModal">
+  <div class="logout-container">
+
+    <h2>Confirm Logout</h2>
+    <!-- <p>Are you sure you want to logout?</p> -->
+    <p id="logoutMessage">Are you sure you want to logout?</p>
+
+    <div class="spinner" id="logoutSpinner"></div>
+
+    <div class="logout-buttons">
+      <button class="cancel-btn" onclick="closeLogoutModal()">No</button>
+      <button class="confirm-btn" onclick="logoutUser()">Yes</button>
+    </div>
+
+  </div>
+</div>
 
 
-</script>
+
+
+
+<script src="farmer.js"></script>
 
 </body>
 </html>
